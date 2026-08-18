@@ -52,13 +52,14 @@ leaving just the bar. Nothing here needs JavaScript.
 | `.rct-window` | `<details>` | The frame; also sets the RCT type context. Add a theme modifier. |
 | `.rct-titlebar` | `<summary>` | Roll-up title bar. Put a `.rct-close` inside it. |
 | `.rct-body` | `<div>` | Padded content area. |
-| `.rct-tabs` / `.rct-tab` | `<div>` / `<button>` | Tab strip; add `.is-active` to the current tab. |
+| `.rct-tabs` / `.rct-tab` | `<div>` / `<button>` | Tab strip; add `.is-active` to the current tab. Give tabs `data-tab="id"` + panels `data-tab-panel="id"` for rct.js switching. |
 | `.rct-page` / `.rct-heading` | `<div>` / `<h2>` | Tab page body and yellow heading. |
 | `.rct-group` | `<fieldset>` + `<legend>` | Etched group box. |
 | `.rct-dropdown` | `<details>` | CSS-only select: `.value` well + `.arrow`, then a `.rct-menu` of `.item`s. |
 | `.rct-button` | `<button>` | Add `.is-pressed` to pin it down, `.rct-button--wide` to fill a group. |
 | `.rct-checkbox` | `<label>` + `<input type="checkbox">` | Native input, redrawn. |
 | `.rct-input` | `<input type="text">` / `<textarea>` | Recessed text-field well; `.rct-input--wide` to indent inside a group. |
+| `dialog.rct-window` | `<dialog>` | Modal styled as a window. Open with `.showModal()` or a `[data-rct-open="id"]` button; close with `[data-rct-close]`, Escape, or a backdrop click. |
 | `.rct-scene` / `.rct-stage` / `.rct-row` | layout helpers | Optional grass backdrop, window shelf, inline control row. |
 
 The framework never styles your `<body>`; the typographic baseline lives on
@@ -99,13 +100,19 @@ Ships with `rct-window--taupe`, `rct-window--tan`, `rct-window--slate`, and
 **With Sass** — add an entry to the `$themes` map in `src/_tokens.scss` and rebuild;
 it generates the `.rct-window--<name>` class for you.
 
-## The dropdown JS
+## The rct.js enhancer
 
-`js/rct.js` is optional. Pure CSS already opens and closes menus; the script adds
-what a real `<select>` does — opening one dropdown closes the others, clicking an
-item writes its label into the value well and closes, and an outside click closes
-everything. It auto-initializes on load; for dynamically injected dropdowns call
-`RCT.init(rootElement)` (idempotent).
+`js/rct.js` is optional progressive enhancement — every component still works
+without it. It auto-initializes on load; after injecting markup dynamically call
+`RCT.init(rootElement)` (idempotent). It wires three things:
+
+- **Dropdowns** — what a real `<select>` does: opening one closes the others,
+  clicking an item writes its label into the value well and closes, and an
+  outside click closes everything.
+- **Tabs** — clicking `.rct-tab[data-tab="id"]` marks it active and shows the
+  matching `[data-tab-panel="id"]` within the same window, hiding the rest.
+- **Modals** — a `[data-rct-open="id"]` button opens that `<dialog>`; a
+  `[data-rct-close]` button, Escape, or a backdrop click closes it.
 
 ## Build from source
 
@@ -143,3 +150,7 @@ The bundled font is licensed separately and **requires attribution**:
 
 Because the font is CC BY-SA 3.0, redistributing it means keeping this attribution
 and staying under a compatible ShareAlike license.
+
+The docs page (`docs/index.html`) also uses **Departure Mono** for code, by Helena
+Zhang, licensed under the [SIL Open Font License 1.1](fonts/DEPARTURE-MONO-LICENSE.txt).
+It is not required by the framework itself.

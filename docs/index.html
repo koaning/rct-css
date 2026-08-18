@@ -46,7 +46,8 @@
   :not(pre) > code {
     background: #223016;
     color: #e7f0d8;
-    padding: 1px 6px;
+    padding: 0 6px;
+    font-size: 0.72em;   /* Departure Mono runs large next to the RCT pixel font */
   }
   pre {
     background: #1b2410;
@@ -263,12 +264,12 @@
           <legend>Six variables</legend>
           <p style="margin: 0; line-height: 1.05">Every component reads six CSS custom properties. A built-in theme like <code>slate</code> or <code>olive</code> just sets them. Because the compiled <code>rct.css</code> only ever reads these variables, you can invent a brand-new theme in plain CSS — no Sass, no build step:</p>
           <pre><code class="language-css">.rct-window--sunset {
-  --body:  #c8582f;   /* frames, buttons, tabs */
-  --light: #e8935c;   /* raised bevel highlight */
-  --dark:  #6e2a12;   /* raised bevel shadow */
-  --field: #b34a25;   /* sunken input wells */
-  --title: #5a2110;   /* title bar + menu hover */
-  --page:  #c8582f;   /* tab page fill */
+  --body:  #c8582f;  /* frames/buttons */
+  --light: #e8935c;  /* bevel highlight */
+  --dark:  #6e2a12;  /* bevel shadow */
+  --field: #b34a25;  /* input wells */
+  --title: #5a2110;  /* title + hover */
+  --page:  #c8582f;  /* tab page */
 }</code></pre>
           <p style="margin: 0; line-height: 1.05">Add <code>class="rct-window rct-window--sunset"</code> to any window and it inherits the whole look. That’s the entire theming system.</p>
         </fieldset>
