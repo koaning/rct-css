@@ -1,11 +1,11 @@
 # rct.css
 
-A tiny CSS framework that recreates **RollerCoaster Tycoon 2** window chrome:
-flat fills framed by 2px light/dark bevel edges, the RCT2 pixel font with
-anti-aliasing switched off, and CSS-only `<details>`-based windows and dropdowns.
+rct.css is a small CSS framework. It recreates the **RollerCoaster Tycoon 2**
+window chrome: flat fills, 2px light/dark bevel edges, the RCT2 pixel font with
+anti-aliasing turned off, and CSS-only windows and dropdowns built from `<details>`.
 
-Authored in Sass, but shipped as a single plain **`dist/rct.css`** you can drop in
-anywhere — and reskin entirely in plain CSS, no build step required.
+The source is Sass. rct.css ships as one plain file, **`dist/rct.css`**. You can
+add it to any page. You can also reskin it fully in plain CSS, with no build step.
 
 ![Three RCT-style windows: a tan scenario window, a taupe options window, and a component sheet](docs/index.html)
 
@@ -13,17 +13,17 @@ anywhere — and reskin entirely in plain CSS, no build step required.
 
 ## Install
 
-Drop the compiled file in and go:
+Add the compiled file to your page:
 
 ```html
 <link rel="stylesheet" href="dist/rct.css">
-<!-- optional: adds dropdown select-and-close niceties -->
+<!-- optional: adds dropdown select-and-close behavior -->
 <script src="js/rct.js" defer></script>
 ```
 
-The stylesheet loads its bundled font from `../fonts/rct2.otf` relative to the CSS
-file, so keep `dist/` and `fonts/` siblings (the default layout, and how a CDN
-serves the package).
+The stylesheet loads its bundled font from `../fonts/rct2.otf`, relative to the CSS
+file. Keep `dist/` and `fonts/` as sibling folders. This is the default layout, and
+a CDN serves the package the same way.
 
 ## A minimal window
 
@@ -42,8 +42,8 @@ serves the package).
 </details>
 ```
 
-Windows are `<details>` elements: **clicking the title bar rolls the window up**,
-leaving just the bar. Nothing here needs JavaScript.
+Windows are `<details>` elements. **When you click the title bar, the window rolls
+up** and leaves only the bar. This needs no JavaScript.
 
 ## Components
 
@@ -62,13 +62,14 @@ leaving just the bar. Nothing here needs JavaScript.
 | `dialog.rct-window` | `<dialog>` | Modal styled as a window. Open with `.showModal()` or a `[data-rct-open="id"]` button; close with `[data-rct-close]`, Escape, or a backdrop click. |
 | `.rct-scene` / `.rct-stage` / `.rct-row` | layout helpers | Optional grass backdrop, window shelf, inline control row. |
 
-The framework never styles your `<body>`; the typographic baseline lives on
-`.rct-window` (and the opt-in `.rct-scene`), so dropping `rct.css` into an existing
-page changes nothing until you use an `.rct-*` class.
+The framework never styles your `<body>`. The typographic baseline lives on
+`.rct-window`, and on the opt-in `.rct-scene`. So `rct.css` changes nothing on an
+existing page until you use an `.rct-*` class.
 
 ## Theming
 
-Every component reads six CSS custom properties. The built-in themes just set them:
+Every component reads six CSS custom properties. The built-in themes set these
+properties:
 
 | Variable | Controls |
 | --- | --- |
@@ -79,8 +80,8 @@ Every component reads six CSS custom properties. The built-in themes just set th
 | `--title` | title bar + menu-hover fill |
 | `--page` | tab page fill |
 
-Ships with `rct-window--taupe`, `rct-window--tan`, `rct-window--slate`, and
-`rct-window--olive`.
+rct.css ships with four themes: `rct-window--taupe`, `rct-window--tan`,
+`rct-window--slate`, and `rct-window--olive`.
 
 ### Add a theme — two ways
 
@@ -97,26 +98,28 @@ Ships with `rct-window--taupe`, `rct-window--tan`, `rct-window--slate`, and
 }
 ```
 
-**With Sass** — add an entry to the `$themes` map in `src/_tokens.scss` and rebuild;
-it generates the `.rct-window--<name>` class for you.
+**With Sass** — add an entry to the `$themes` map in `src/_tokens.scss`. Then
+rebuild. Sass generates the `.rct-window--<name>` class for you.
 
 ## The rct.js enhancer
 
-`js/rct.js` is optional progressive enhancement — every component still works
-without it. It auto-initializes on load; after injecting markup dynamically call
-`RCT.init(rootElement)` (idempotent). It wires three things:
+`js/rct.js` is optional progressive enhancement. Every component still works
+without it. It auto-initializes on load. If you inject markup after load, call
+`RCT.init(rootElement)`. `RCT.init` is idempotent. It wires three things:
 
-- **Dropdowns** — what a real `<select>` does: opening one closes the others,
-  clicking an item writes its label into the value well and closes, and an
-  outside click closes everything.
-- **Tabs** — clicking `.rct-tab[data-tab="id"]` marks it active and shows the
-  matching `[data-tab-panel="id"]` within the same window, hiding the rest.
-- **Modals** — a `[data-rct-open="id"]` button opens that `<dialog>`; a
-  `[data-rct-close]` button, Escape, or a backdrop click closes it.
+- **Dropdowns** — these behave like a real `<select>`. When you open one dropdown,
+  the others close. When you click an item, rct.js writes its label into the value
+  well and closes the menu. A click outside closes everything.
+- **Tabs** — when you click `.rct-tab[data-tab="id"]`, rct.js marks it active. It
+  then shows the matching `[data-tab-panel="id"]` in the same window and hides the
+  rest.
+- **Modals** — a `[data-rct-open="id"]` button opens that `<dialog>`. A
+  `[data-rct-close]` button, the Escape key, or a backdrop click closes it.
 
 ## Build from source
 
-Requires [Dart Sass](https://sass-lang.com/) (dev dependency only, no runtime deps):
+rct.css needs [Dart Sass](https://sass-lang.com/). Dart Sass is a dev dependency
+only. rct.css has no runtime dependencies.
 
 ```bash
 npm install
@@ -126,17 +129,17 @@ npm run watch      # rebuild on change
 
 Or with the Makefile: `make build`, `make watch`, `make serve` (live demo), `make clean`.
 
-Source lives in `src/`: `_tokens.scss` (the pixel grid + theme palettes),
-`_mixins.scss` (the `raised()` / `sunken()` bevel grammar), and one partial per
-component under `src/components/`.
+The source lives in `src/`. `_tokens.scss` holds the pixel grid and the theme
+palettes. `_mixins.scss` holds the `raised()` and `sunken()` bevel grammar. Each
+component has one partial under `src/components/`.
 
 ## The pixel grid (why the magic numbers)
 
-The RCT2 font's grid is 1/16 em, so crisp sizes are multiples of 16px. At the 32px
-base, one font-pixel = 2px on screen — a `@2x` game screenshot — which is why every
-bevel is 2px. Glyph ink fills only the top half of the em, hence the sub-1
-line-height. Change `$unit` / `$font-size` in `src/_tokens.scss` to rescale the
-whole system; stay on multiples of 16px to keep glyphs sharp.
+The RCT2 font's grid is 1/16 em, so sharp sizes are multiples of 16px. At the 32px
+base, one font-pixel equals 2px on screen. This matches a `@2x` game screenshot, and
+it is why every bevel is 2px. Glyph ink fills only the top half of the em, so the
+line-height is below 1. To rescale the whole system, change `$unit` or `$font-size`
+in `src/_tokens.scss`. Stay on multiples of 16px to keep glyphs sharp.
 
 ## Licenses
 
@@ -148,9 +151,9 @@ The bundled font is licensed separately and **requires attribution**:
 > by “Qimplef” is licensed under a Creative Commons Attribution Share Alike
 > license (http://creativecommons.org/licenses/by-sa/3.0/).
 
-Because the font is CC BY-SA 3.0, redistributing it means keeping this attribution
-and staying under a compatible ShareAlike license.
+The font is CC BY-SA 3.0. If you redistribute it, you must keep this attribution and
+stay under a compatible ShareAlike license.
 
-The docs page (`docs/index.html`) also uses **Departure Mono** for code, by Helena
-Zhang, licensed under the [SIL Open Font License 1.1](fonts/DEPARTURE-MONO-LICENSE.txt).
-It is not required by the framework itself.
+The docs page (`docs/index.html`) also uses **Departure Mono** for code. Helena
+Zhang made it. It uses the [SIL Open Font License 1.1](fonts/DEPARTURE-MONO-LICENSE.txt).
+The framework itself does not need it.
