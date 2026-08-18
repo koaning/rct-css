@@ -1,0 +1,26 @@
+// ------------------------------------------------ headings
+//
+// Element-level h1–h6 for prose inside a window. Underlined in the RCT "etch"
+// grammar — a 2px dark rule with a light drop, the same trick the group box
+// uses. Scoped through :where() so it carries ZERO specificity: any explicit
+// class (e.g. the gold `.rct-heading` used on tab pages) always wins, and a
+// consumer can override a heading with a single plain selector.
+//
+// Bitmap glyphs are crisp at multiples of 16px (48 / 32 / 16 here); the in-
+// between steps are the half-pixel sizes that give six distinct levels.
+
+@use "../tokens" as *;
+
+$heading-sizes: (1: 48px, 2: 40px, 3: 32px, 4: 24px, 5: 20px, 6: 16px);
+
+@each $level, $size in $heading-sizes {
+  :where(.rct-window) h#{$level}:not(.rct-heading) {
+    margin: 0 0 10px;
+    font-size: $size;
+    font-weight: normal;
+    line-height: 1;
+    padding-bottom: 4px;
+    border-bottom: #{$unit} solid var(--dark);   // etched underline
+    box-shadow: 0 #{$unit} 0 var(--light);        // light drop under the rule
+  }
+}

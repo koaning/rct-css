@@ -29,9 +29,12 @@
   left: 5px;                // RCT puts the close box on the left
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--title);
   font-size: 24px;
-  line-height: 32px;
+  line-height: 1;
   box-shadow:
     inset #{$unit} #{$unit} 0 var(--light),
     inset #{-$unit} #{-$unit} 0 #{$sunk-shadow};

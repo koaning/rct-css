@@ -1,0 +1,38 @@
+// ------------------------------------------------ scrollbars
+//
+// Overflow inside RCT chrome gets a themed bar instead of the browser default:
+// a sunken track well with a raised, beveled thumb, drawn with the same 2px
+// light/dark bevel grammar as every other surface and themed through the six
+// CSS custom properties.
+//
+// Scoped to the actual scroll CONTAINERS — a padded `.rct-body`, a `.rct-menu`,
+// or the explicit `.rct-scroll` hook — never the `.rct-window` frame itself, so
+// the bar can't paint over the window's outline + bevel border.
+
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+.rct-body,
+.rct-menu,
+.rct-scroll {
+  // Firefox: chunky bars, thumb over track, both from the theme.
+  scrollbar-color: var(--body) var(--field);
+
+  // WebKit / Blink.
+  &::-webkit-scrollbar {
+    width: 8 * $unit;   // 16px — chunky, on the pixel grid
+    height: 8 * $unit;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--field);
+    @include sunken;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--body);
+    @include raised;
+  }
+  // Filler square where a horizontal and vertical bar meet.
+  &::-webkit-scrollbar-corner {
+    background: var(--field);
+  }
+}

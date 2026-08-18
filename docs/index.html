@@ -53,11 +53,23 @@
     background: #1b2410;
     color: #dfe9cf;
     padding: 16px 18px;
-    margin: 8px 0 0;
+    margin: 8px 0 16px;
     overflow-x: auto;
     font-size: 17px;
     line-height: 1.5;
     box-shadow: inset 2px 2px 0 #35471f, inset -2px -2px 0 #0e1608;
+    scrollbar-color: #35471f #12190a;
+  }
+  /* Match the pre's green bevels for its scrollbar, overriding the window theme
+     bars (the modal's code block sits inside a taupe .rct-window). */
+  pre::-webkit-scrollbar { height: 16px; width: 16px; }
+  pre::-webkit-scrollbar-track {
+    background: #12190a;
+    box-shadow: inset 2px 2px 0 #0e1608, inset -2px -2px 0 #35471f;
+  }
+  pre::-webkit-scrollbar-thumb {
+    background: #2a3818;
+    box-shadow: inset 2px 2px 0 #43592a, inset -2px -2px 0 #0e1608;
   }
   .rct-usage a { color: #ffe680; }
 
@@ -232,18 +244,14 @@
     <details class="rct-window rct-window--slate" style="width: 300px" open>
       <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Slate</summary>
       <div class="rct-body">
-        <div class="rct-row" style="justify-content: center">
-          <button class="rct-button" type="button" data-rct-open="theme-modal">How does this work?</button>
-        </div>
+        <div class="rct-row" style="justify-content: center">nice color</div>
       </div>
     </details>
 
     <details class="rct-window rct-window--olive" style="width: 300px" open>
       <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Olive</summary>
       <div class="rct-body">
-        <div class="rct-row" style="justify-content: center">
-          <button class="rct-button" type="button" data-rct-open="theme-modal">How does this work?</button>
-        </div>
+        <div class="rct-row" style="justify-content: center">also nice</div>
       </div>
     </details>
 
@@ -256,8 +264,28 @@
       </div>
     </details>
 
+    <p class="rct-stage-note">Headings — plain h1–h6, underlined</p>
+
+    <details class="rct-window rct-window--taupe" style="width: 100%; max-width: 640px" open>
+      <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Headings</summary>
+      <div class="rct-body">
+        <h1>Heading 1</h1>
+        <p style="margin: 0 0 14px; line-height: 1.05">The largest step, for a park name or a screen title. Every heading inherits the RCT2 pixel font and gets an etched underline from the window's own theme colors.</p>
+        <h2>Heading 2</h2>
+        <p style="margin: 0 0 14px; line-height: 1.05">A section label inside a panel. Body copy sits underneath at the normal 32px base size, so the hierarchy reads clearly.</p>
+        <h3>Heading 3</h3>
+        <p style="margin: 0 0 14px; line-height: 1.05">A sub-section. Use these to break a long window into scannable parts.</p>
+        <h4>Heading 4</h4>
+        <p style="margin: 0 0 14px; line-height: 1.05">A minor grouping — still underlined, just a step smaller.</p>
+        <h5>Heading 5</h5>
+        <p style="margin: 0 0 14px; line-height: 1.05">A fine-grained label for dense forms and lists.</p>
+        <h6>Heading 6</h6>
+        <p style="margin: 0; line-height: 1.05">The smallest step, matching body text size for captions and footnotes.</p>
+      </div>
+    </details>
+
     <!-- ============ theming modal ============ -->
-    <dialog id="theme-modal" class="rct-window rct-window--taupe" style="width: 560px">
+    <dialog id="theme-modal" class="rct-window rct-window--taupe" style="width: 720px">
       <div class="rct-titlebar"><button class="rct-close" type="button" data-rct-close aria-label="Close">X</button>How theming works</div>
       <div class="rct-body">
         <fieldset class="rct-group">
