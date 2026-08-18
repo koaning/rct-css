@@ -1,0 +1,40 @@
+// ------------------------------------------------ checkbox
+//
+// A native <input type="checkbox"> with its appearance stripped, redrawn as a
+// sunken well with a CSS tick. Wrap it in a <label class="rct-checkbox">.
+
+@use "../tokens" as *;
+
+.rct-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.rct-checkbox input {
+  appearance: none;
+  flex: none;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+  background: var(--field);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.rct-checkbox input::after {
+  content: "";
+  width: 13px;
+  height: 7px;
+  margin-top: -4px;
+  border-left: #{$unit} solid #{$ink};
+  border-bottom: #{$unit} solid #{$ink};
+  transform: rotate(-45deg);
+  visibility: hidden;
+}
+.rct-checkbox input:checked::after { visibility: visible; }

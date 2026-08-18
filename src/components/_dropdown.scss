@@ -1,0 +1,78 @@
+// ------------------------------------------------ dropdown
+//
+// A CSS-only select built from a <details>: the <summary> is a sunken value well
+// plus a raised arrow button; the menu is absolutely positioned below. Works
+// without JavaScript (open/close); the optional rct.js adds select-and-close,
+// single-open, and outside-click-to-close.
+
+@use "../tokens" as *;
+
+.rct-dropdown {
+  position: relative;
+  margin-inline: 40px 6px;   // the indent RCT gives fields inside groups
+}
+
+.rct-dropdown > summary {
+  list-style: none;
+  display: flex;
+  cursor: pointer;
+  user-select: none;
+}
+.rct-dropdown > summary::-webkit-details-marker { display: none; }
+
+.rct-dropdown .value {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 12px 6px;
+  background: var(--field);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.rct-dropdown .arrow {
+  flex: none;
+  width: 36px;
+  display: grid;
+  place-items: center;
+  background: var(--body);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--light),
+    inset #{-$unit} #{-$unit} 0 var(--dark);
+}
+.rct-dropdown .arrow::after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top: 8px solid #{$ink};
+  margin-top: 8px;
+}
+.rct-dropdown > summary:active .arrow,
+.rct-dropdown[open] .arrow {
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+}
+
+.rct-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 36px;
+  z-index: 10;
+  background: var(--field);
+  border: #{$unit} solid #{$outline};
+  padding: 2px;
+}
+.rct-menu .item {
+  padding: 6px 10px 4px;
+  cursor: pointer;
+}
+.rct-menu .item:hover {
+  background: var(--title);
+  color: $title-ink;
+  text-shadow: #{$unit} #{$unit} 0 #{$title-shadow};
+}

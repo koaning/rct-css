@@ -1,0 +1,42 @@
+// ------------------------------------------------ text input
+//
+// A recessed field well — the same sunken bevel as a dropdown's `.value`, but a
+// live <input type="text"> or <textarea>. Keeps the pixel font (it reads as an
+// in-game text field).
+
+@use "../tokens" as *;
+
+.rct-input {
+  appearance: none;
+  display: block;
+  width: 100%;
+  padding: 8px 12px 6px;
+  border: 0;
+  border-radius: 0;
+  background: var(--field);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+  font: inherit;
+  letter-spacing: inherit;
+  color: $ink;
+  caret-color: $ink;
+}
+.rct-input::placeholder { color: #5f584a; }
+.rct-input:focus { outline: none; }
+.rct-input:focus-visible {
+  outline: #{$unit} solid #f6d31f;   // gold focus ring
+  outline-offset: #{$unit};
+}
+
+textarea.rct-input {
+  line-height: 0.9;
+  min-height: 96px;
+  resize: vertical;
+}
+
+// Match the indent RCT gives fields inside a group.
+.rct-input--wide {
+  margin-inline: 40px 6px;
+  width: calc(100% - 46px);
+}

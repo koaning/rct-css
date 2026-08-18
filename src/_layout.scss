@@ -1,0 +1,50 @@
+// ---------------------------------------------------------------------------
+// Layout — optional scene helpers (the park-terrain backdrop + a window stage).
+//
+// Entirely opt-in. Windows work on any background; `.rct-scene` just recreates
+// the two-tone grass and typographic baseline from the original exploration.
+// ---------------------------------------------------------------------------
+
+@use "tokens" as *;
+@use "mixins" as *;
+
+.rct-scene {
+  min-height: 100dvh;
+  padding: 40px 32px 64px;
+  // Park terrain: two-tone grass checker.
+  background: repeating-conic-gradient(#4c7a30 0% 25%, #446f2a 0% 50%) 0 0 / 96px 96px;
+  font-family: "RCT2", "Courier New", monospace;
+  font-size: $font-size;
+  line-height: 0.8;
+  letter-spacing: 0;
+  color: $ink;
+  @include pixel-text;
+}
+
+// A centered, wrapping shelf of windows.
+.rct-stage {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+  max-width: 1480px;
+  margin-inline: auto;
+}
+
+// A full-width caption above the stage (white with a dark pixel shadow).
+.rct-stage-note {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  text-shadow: #{$unit} #{$unit} 0 #1c2e10;
+  margin: 0 0 4px;
+}
+
+// A wrapping row of inline controls (buttons, checkboxes) inside a group.
+.rct-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}

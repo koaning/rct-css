@@ -1,0 +1,61 @@
+// ------------------------------------------------ tab strip + page
+//
+// A row of raised tabs sitting on top of a sunken page. The active tab grows
+// 4px taller and drops its bottom edge so it visually merges into the page.
+
+@use "../tokens" as *;
+
+.rct-tabs {
+  display: flex;
+  gap: 2px;
+  padding-inline: 3px;
+  position: relative;
+  z-index: 1;
+}
+
+.rct-tab {
+  width: 62px;
+  height: 54px;
+  border: 0;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  background: var(--body);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--light),
+    inset #{-$unit} #{-$unit} 0 var(--dark);
+  cursor: pointer;
+}
+.rct-tab.is-active {
+  background: var(--page);
+  height: 58px;
+  margin-bottom: -4px;   // merge into the page below
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--light),
+    inset #{-$unit} 0 0 var(--dark);   // no bottom edge
+}
+
+.rct-page {
+  background: var(--page);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+  padding: 14px 14px 16px;
+  min-height: 260px;
+}
+
+.rct-heading {
+  margin: 0 0 6px;
+  font-size: $font-size;
+  font-weight: normal;
+  color: #f6d31f;
+  text-shadow: #{$unit} #{$unit} 0 #4e3a00;
+}
+
+.rct-page p {
+  margin: 0;
+  line-height: 0.9;
+  color: #fff;
+  text-shadow: #{$unit} #{$unit} 0 #6b500e;
+}

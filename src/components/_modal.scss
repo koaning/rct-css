@@ -1,0 +1,17 @@
+// ------------------------------------------------ modal
+//
+// A dialog styled as a window. Use a native <dialog class="rct-window …"> so it
+// centers, traps focus, and closes on Escape with no library. rct.js adds the
+// data-attribute openers/closers and click-outside-to-close; you can also just
+// call dialog.showModal() / dialog.close() yourself.
+
+@use "../tokens" as *;
+
+dialog.rct-window {
+  border: 0;
+  max-width: min(90vw, 560px);
+  color: $ink;
+}
+dialog.rct-window::backdrop {
+  background: rgba(20, 16, 8, 0.55);
+}

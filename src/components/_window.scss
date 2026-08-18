@@ -1,0 +1,40 @@
+// ------------------------------------------------ window frame
+//
+// A window is a <details> element: clicking its title bar rolls it up, leaving
+// just the bar. It also establishes the RCT typographic context for everything
+// inside, so the framework never has to touch the consumer's <body>.
+
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+// Theme fallbacks at ZERO specificity (via :where) so an unthemed window renders
+// as taupe, yet ANY `.rct-window--x` theme class — even one a consumer defines in
+// plain CSS — always wins, no matter the source order of the stylesheets.
+:where(.rct-window) {
+  --body:  #8e8272;
+  --light: #beb29a;
+  --dark:  #48402f;
+  --field: #7f7462;
+  --title: #4d4535;
+  --page:  var(--body);
+}
+
+.rct-window {
+  background: var(--body);
+  padding: 4px;
+  box-shadow:
+    0 0 0 1px #{$outline},              // dark outline around everything
+    inset #{$unit} #{$unit} 0 var(--light),   // raised frame bevel
+    inset #{-$unit} #{-$unit} 0 var(--dark);
+
+  // Typographic baseline (was on <body> in the exploration).
+  font-family: "RCT2", "Courier New", monospace;
+  font-size: $font-size;
+  line-height: 0.8;
+  letter-spacing: 0;
+  color: $ink;
+  @include pixel-text;
+}
+
+// Padded content area below the title bar / tabs.
+.rct-body { padding: 8px 8px 6px; }

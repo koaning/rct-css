@@ -1,0 +1,22 @@
+// ------------------------------------------------ group box
+//
+// An etched frame around related controls — a <fieldset> with a <legend>.
+// The "etch" is a dark border plus a light offset shadow.
+
+@use "../tokens" as *;
+
+.rct-group {
+  margin: 0 0 10px;
+  padding: 10px;
+  border: #{$unit} solid var(--dark);
+  box-shadow: #{$unit} #{$unit} 0 var(--light);   // etched: dark line + light offset
+  min-inline-size: 0;
+}
+
+.rct-group > legend {
+  padding: 0 6px;
+  margin-left: 6px;
+}
+
+// Even vertical rhythm between stacked controls.
+.rct-group > * + * { margin-top: 8px; }
