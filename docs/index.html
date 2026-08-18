@@ -41,13 +41,11 @@
     font-smooth: auto;
     text-shadow: none;
   }
-  /* Inline code chip (prose only — a block <pre><code> must NOT get this, or the
-     background paints a separate box per wrapped line). */
+  /* Inline code (prose only). No background for now; just Departure Mono, sized
+     down a touch since it runs large next to the RCT pixel font, inheriting the
+     surrounding text colour so it stays legible in both prose and the modal. */
   :not(pre) > code {
-    background: #223016;
-    color: #e7f0d8;
-    padding: 0 6px;
-    font-size: 0.72em;   /* Departure Mono runs large next to the RCT pixel font */
+    font-size: 0.62em;
   }
   pre {
     background: #1b2410;
