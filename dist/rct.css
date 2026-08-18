@@ -482,11 +482,6 @@ dialog.rct-window::backdrop {
   background: rgba(20, 16, 8, 0.55);
 }
 
-.rct-body,
-.rct-menu,
-.rct-scroll {
-  scrollbar-color: var(--body) var(--field);
-}
 .rct-body::-webkit-scrollbar,
 .rct-menu::-webkit-scrollbar,
 .rct-scroll::-webkit-scrollbar {
@@ -505,8 +500,21 @@ dialog.rct-window::backdrop {
   background: var(--body);
   box-shadow: inset 2px 2px 0 var(--light), inset -2px -2px 0 var(--dark);
 }
+.rct-body::-webkit-scrollbar-thumb:active,
+.rct-menu::-webkit-scrollbar-thumb:active,
+.rct-scroll::-webkit-scrollbar-thumb:active {
+  box-shadow: inset 2px 2px 0 var(--dark), inset -2px -2px 0 var(--light);
+}
 .rct-body::-webkit-scrollbar-corner,
 .rct-menu::-webkit-scrollbar-corner,
 .rct-scroll::-webkit-scrollbar-corner {
   background: var(--field);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .rct-body,
+  .rct-menu,
+  .rct-scroll {
+    scrollbar-color: var(--body) var(--field);
+  }
 }

@@ -12,13 +12,10 @@
 @use "../tokens" as *;
 @use "../mixins" as *;
 
+// WebKit / Blink: the full beveled bar.
 .rct-body,
 .rct-menu,
 .rct-scroll {
-  // Firefox: chunky bars, thumb over track, both from the theme.
-  scrollbar-color: var(--body) var(--field);
-
-  // WebKit / Blink.
   &::-webkit-scrollbar {
     width: 8 * $unit;   // 16px — chunky, on the pixel grid
     height: 8 * $unit;
@@ -31,8 +28,23 @@
     background: var(--body);
     @include raised;
   }
+  &::-webkit-scrollbar-thumb:active {
+    @include sunken;   // press the thumb in when dragged, like a button
+  }
   // Filler square where a horizontal and vertical bar meet.
   &::-webkit-scrollbar-corner {
     background: var(--field);
+  }
+}
+
+// Firefox (which has no ::-webkit-scrollbar): themed fills only. Split behind
+// @supports so Chrome/Blink — which silently drops the ::-webkit-scrollbar
+// pseudos above the moment a standard `scrollbar-color` is set — keeps the full
+// beveled bar, while Firefox still gets thumb/track colors from the theme.
+@supports not selector(::-webkit-scrollbar) {
+  .rct-body,
+  .rct-menu,
+  .rct-scroll {
+    scrollbar-color: var(--body) var(--field);   // thumb, track
   }
 }

@@ -8,6 +8,30 @@
 <style>
   /* Page-only styling for the docs (not part of the framework). */
 
+  /* Theme the viewport (whole-page) scrollbar to match the taupe scene chrome.
+     The framework scopes its scrollbar to .rct-window / .rct-scene and never
+     touches the root element, so the page's own scrollbar is styled here with
+     the taupe palette: body #8e8272, light #beb29a, dark #48402f, field #7f7462.
+     Chrome paints the viewport bar from <html>, hence the html target. */
+  /* Firefox only — Chrome drops the ::-webkit-scrollbar bevels below the moment
+     a standard scrollbar-color is set, so gate it behind @supports. */
+  @supports not selector(::-webkit-scrollbar) {
+    html { scrollbar-color: #8e8272 #7f7462; }  /* thumb, track */
+  }
+  html::-webkit-scrollbar { width: 16px; height: 16px; }
+  html::-webkit-scrollbar-track {
+    background: #7f7462;
+    box-shadow: inset 2px 2px 0 #48402f, inset -2px -2px 0 #beb29a;  /* sunken well */
+  }
+  html::-webkit-scrollbar-thumb {
+    background: #8e8272;
+    box-shadow: inset 2px 2px 0 #beb29a, inset -2px -2px 0 #48402f;  /* raised */
+  }
+  html::-webkit-scrollbar-thumb:active {
+    box-shadow: inset 2px 2px 0 #48402f, inset -2px -2px 0 #beb29a;  /* pressed */
+  }
+  html::-webkit-scrollbar-corner { background: #7f7462; }
+
   /* Departure Mono (SIL OFL 1.1, Helena Zhang) — the code + prose font for the
      docs. A pixel font that stays crisp and readable at small sizes. */
   @font-face {
