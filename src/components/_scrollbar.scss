@@ -1,0 +1,62 @@
+// ------------------------------------------------ scrollbar
+//
+// RCT overflow rides a chunky pixel bar instead of the native OS scrollbar. The
+// track is a recessed well (the sunken bevel + `--field` fill of `.rct-input`);
+// the thumb is a raised surface (the bevel + `--body` fill of `.rct-button`), so
+// a scroll region reads as the same chrome as the rest of the frame.
+//
+// Scoped to the RCT context (`.rct-window` / `.rct-scene` and their contents),
+// so dropping rct.css into a page never restyles the consumer's own scrollbars.
+//
+// WebKit/Blink gets the full beveled bar via `::-webkit-scrollbar-*`. Firefox
+// (which supports neither those pseudo-elements nor bevels on a scrollbar) gets
+// matching fills through the standard `scrollbar-color`. The two are split by
+// `@supports selector(...)` because Chrome ignores the `::-webkit-scrollbar`
+// pseudos once standard `scrollbar-color` is set — they must not both apply.
+
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+$scroll: ".rct-window, .rct-scene";
+$bar: $unit * 8;   // 8 font-pixels — a chunky in-game bar.
+
+// Firefox and any engine without ::-webkit-scrollbar: themed fills, no bevel.
+@supports not selector(::-webkit-scrollbar) {
+  :where(#{$scroll}),
+  :where(#{$scroll}) * {
+    scrollbar-color: var(--body) var(--field);   // thumb, track
+    scrollbar-width: auto;
+  }
+}
+
+// WebKit/Blink: the full beveled bar, on the context and everything inside it.
+:where(#{$scroll})::-webkit-scrollbar,
+:where(#{$scroll}) *::-webkit-scrollbar {
+  width: #{$bar};
+  height: #{$bar};
+}
+
+// Track: a recessed well — the sunken bevel + fill of `.rct-input`.
+:where(#{$scroll})::-webkit-scrollbar-track,
+:where(#{$scroll}) *::-webkit-scrollbar-track {
+  background: var(--field);
+  @include sunken;
+}
+
+// Thumb: a raised surface — the bevel + fill of `.rct-button`, pressing in when
+// dragged (bevel inverts, exactly like a button's `:active`).
+:where(#{$scroll})::-webkit-scrollbar-thumb,
+:where(#{$scroll}) *::-webkit-scrollbar-thumb {
+  background: var(--body);
+  @include raised;
+}
+:where(#{$scroll})::-webkit-scrollbar-thumb:active,
+:where(#{$scroll}) *::-webkit-scrollbar-thumb:active {
+  @include sunken;
+}
+
+// The corner where a vertical and horizontal bar meet: fill it with the track.
+:where(#{$scroll})::-webkit-scrollbar-corner,
+:where(#{$scroll}) *::-webkit-scrollbar-corner {
+  background: var(--field);
+}
