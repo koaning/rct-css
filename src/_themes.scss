@@ -1,0 +1,23 @@
+// ---------------------------------------------------------------------------
+// Themes — map palettes to the six custom properties.
+//
+// Each entry in $themes (see _tokens.scss) becomes a `.rct-window--<name>` class
+// that sets --body / --light / --dark / --field / --title / --page. Components
+// only ever read these variables, so a consumer can add a theme two ways:
+//   1. add a map entry and rebuild, or
+//   2. (no build) set the six --* properties on any `.rct-window` in plain CSS.
+// ---------------------------------------------------------------------------
+
+@use "sass:map";
+@use "tokens" as *;
+
+@each $name, $p in $themes {
+  .rct-window--#{$name} {
+    --body:  #{map.get($p, body)};
+    --light: #{map.get($p, light)};
+    --dark:  #{map.get($p, dark)};
+    --field: #{map.get($p, field)};
+    --title: #{map.get($p, title)};
+    --page:  #{map.get($p, page)};
+  }
+}

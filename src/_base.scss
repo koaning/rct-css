@@ -1,0 +1,22 @@
+// ---------------------------------------------------------------------------
+// Base — the font face and a scoped reset.
+//
+// Unlike the original exploration, the framework does NOT style the consumer's
+// <body>. The RCT typographic context lives on `.rct-window` (see _window.scss)
+// and the optional `.rct-scene` helper (see _layout.scss), so dropping rct.css
+// into an existing page changes nothing until you use an `.rct-*` class.
+// ---------------------------------------------------------------------------
+
+// The "RCT2" FontStruction by "Qimplef" — CC BY-SA 3.0. Attribution required;
+// see the header of the compiled rct.css, README, and LICENSE.
+@font-face {
+  font-family: "RCT2";
+  src: url("../fonts/rct2.otf") format("opentype");
+  font-display: swap;
+}
+
+// Border-box everywhere inside a window, at zero specificity so consumers can
+// override without a fight. Stays scoped — never touches the global `*`.
+:where(.rct-window, .rct-scene) * {
+  box-sizing: border-box;
+}

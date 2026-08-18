@@ -1,0 +1,45 @@
+// ------------------------------------------------ button
+//
+// A raised surface that inverts its bevel when pressed, nudging the label
+// down-right by one font-pixel so it reads as physically depressed.
+
+@use "../tokens" as *;
+
+.rct-button {
+  display: block;
+  padding: 8px 18px 6px;
+  border: 0;
+  background: var(--body);
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--light),
+    inset #{-$unit} #{-$unit} 0 var(--dark);
+  font: inherit;
+  letter-spacing: inherit;
+  color: $ink;
+  cursor: pointer;
+  user-select: none;
+}
+.rct-button:active,
+.rct-button.is-pressed {
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--dark),
+    inset #{-$unit} #{-$unit} 0 var(--light);
+  padding: 10px 16px 4px 20px;   // nudge label down-right when pressed
+}
+.rct-button:disabled {
+  color: #5f584a;
+  text-shadow: #{$unit} #{$unit} 0 var(--light);
+  cursor: default;
+}
+.rct-button:disabled:active {
+  box-shadow:
+    inset #{$unit} #{$unit} 0 var(--light),
+    inset #{-$unit} #{-$unit} 0 var(--dark);
+  padding: 8px 18px 6px;
+}
+
+// Full-width variant, matching the indent RCT gives fields inside a group.
+.rct-button--wide {
+  margin-inline: 40px 6px;
+  width: calc(100% - 46px);
+}

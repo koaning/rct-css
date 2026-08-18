@@ -1,0 +1,25 @@
+/*! ==========================================================================
+ * rct.css — RollerCoaster Tycoon panel chrome as a CSS framework.
+ * Flat fills + 2px light/dark bevels + the RCT2 pixel font. MIT licensed.
+ *
+ * The "RCT2" FontStruction (https://fontstruct.com/fontstructions/show/465125)
+ * by "Qimplef" is licensed under a Creative Commons Attribution Share Alike
+ * license (http://creativecommons.org/licenses/by-sa/3.0/).
+ * ========================================================================== */
+
+// Author in Sass; ship a single plain rct.css that themes through CSS custom
+// properties, so a consumer can reskin the prebuilt file without a build step.
+
+@use "base";
+@use "themes";
+@use "layout";
+
+@use "components/window";
+@use "components/titlebar";
+@use "components/tabs";
+@use "components/group";
+@use "components/dropdown";
+@use "components/button";
+@use "components/checkbox";
+@use "components/input";
+@use "components/modal";

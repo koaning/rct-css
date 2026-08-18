@@ -1,0 +1,31 @@
+// ---------------------------------------------------------------------------
+// Mixins — the bevel grammar.
+//
+// Every surface in RCT is a flat fill framed by a 2px light edge (top-left) and
+// a 2px dark edge (bottom-right), drawn with stacked inset box-shadows. "Raised"
+// is the default; pressed / sunken states just swap the two colors. These two
+// mixins are the single source of truth for that look.
+// ---------------------------------------------------------------------------
+
+@use "tokens" as *;
+
+// Raised: highlight top-left, shadow bottom-right (a button popping out).
+@mixin raised($light: var(--light), $dark: var(--dark), $size: $unit) {
+  box-shadow:
+    inset #{$size} #{$size} 0 #{$light},
+    inset #{-$size} #{-$size} 0 #{$dark};
+}
+
+// Sunken: the inverse — shadow top-left, highlight bottom-right (a pressed key
+// or a recessed input well).
+@mixin sunken($light: var(--light), $dark: var(--dark), $size: $unit) {
+  box-shadow:
+    inset #{$size} #{$size} 0 #{$dark},
+    inset #{-$size} #{-$size} 0 #{$light};
+}
+
+// Pixel-crisp bitmap text: kill anti-aliasing so glyphs stay on the grid.
+@mixin pixel-text {
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}

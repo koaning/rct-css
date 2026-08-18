@@ -1,0 +1,26 @@
+{
+  "name": "rct.css",
+  "version": "0.1.0",
+  "description": "A RollerCoaster Tycoon UI framework — flat fills, 2px light/dark bevels, and the RCT2 pixel font.",
+  "keywords": ["css", "framework", "rollercoaster-tycoon", "rct", "retro", "pixel", "ui", "skeuomorphic"],
+  "license": "MIT",
+  "type": "module",
+  "style": "dist/rct.css",
+  "files": [
+    "dist",
+    "js",
+    "fonts",
+    "src",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build:css": "sass src/rct.scss dist/rct.css --style=expanded --no-source-map",
+    "build:min": "sass src/rct.scss dist/rct.min.css --style=compressed --no-source-map",
+    "build": "npm run build:css && npm run build:min",
+    "watch": "sass --watch src/rct.scss:dist/rct.css --style=expanded --no-source-map"
+  },
+  "devDependencies": {
+    "sass": "^1.102.0"
+  }
+}

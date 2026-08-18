@@ -1,0 +1,44 @@
+// ---------------------------------------------------------------------------
+// Tokens — the invariants of the RCT2 look.
+//
+// The RCT2 font's pixel grid is 1/16 em (125/2000 units), so crisp sizes are
+// multiples of 16px. At the 32px base, one font-pixel = 2px on screen, matching
+// a @2x game screenshot — which is why every bevel is 2px. Change $unit and the
+// whole system rescales, but stay on multiples of 16px to keep glyphs crisp.
+// ---------------------------------------------------------------------------
+
+// Screen pixels per font-pixel. 2px = a @2x (32px base) screenshot.
+$unit: 2px !default;
+
+// Base type size. Must be a multiple of 16px for pixel-crisp glyphs.
+$font-size: 32px !default;
+
+// Global ink + fixed accent colors (theme-independent).
+$ink:            #171310 !default; // near-black glyph ink
+$outline:        #241d12 !default; // 1px dark outline around windows / menus
+$title-ink:      #f4ead2 !default; // cream text on title bars
+$title-shadow:   #1c1408 !default; // drop shadow behind title text
+$sunk-shadow:    rgba(0, 0, 0, 0.45) !default; // sunken strip inside title bar
+
+// The six per-theme custom properties every component reads. Authored in Sass,
+// but emitted as CSS variables so consumers can theme the prebuilt file in plain
+// CSS by overriding these on any `.rct-window` (no rebuild required).
+//
+//   --body   surface of frames, buttons, tabs
+//   --light  raised bevel highlight (top-left)
+//   --dark   raised bevel shadow (bottom-right)
+//   --field  sunken input / value wells
+//   --title  title bar + menu hover fill
+//   --page   tab page fill (falls back to --body)
+
+// Theme palettes. Add an entry here (then rebuild) OR set the six --* custom
+// properties on a `.rct-window` in plain CSS to make a theme without Sass.
+// Keys are quoted so Sass never mistakes "tan" / "olive" for CSS color values.
+$themes: (
+  "taupe": (body: #8e8272, light: #beb29a, dark: #48402f, field: #7f7462, title: #4d4535, page: #8e8272),
+  "tan":   (body: #b8862b, light: #ddb04b, dark: #6e4e10, field: #a3761f, title: #5a421a, page: #c59733),
+  // Cool blue-grey — RCT's research / staff windows.
+  "slate": (body: #74808e, light: #a3adba, dark: #333c48, field: #66707c, title: #39414d, page: #74808e),
+  // Muted park green — finances / info windows.
+  "olive": (body: #6f7a3a, light: #9aa457, dark: #3c4318, field: #626c31, title: #363c17, page: #6f7a3a),
+) !default;
