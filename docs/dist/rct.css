@@ -144,9 +144,12 @@
   left: 5px;
   width: 32px;
   height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: var(--title);
   font-size: 24px;
-  line-height: 32px;
+  line-height: 1;
   box-shadow: inset 2px 2px 0 var(--light), inset -2px -2px 0 rgba(0, 0, 0, 0.45);
   appearance: none;
   border: 0;
@@ -226,6 +229,66 @@
 
 .rct-group > * + * {
   margin-top: 8px;
+}
+
+:where(.rct-window) h1:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 48px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
+}
+
+:where(.rct-window) h2:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 40px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
+}
+
+:where(.rct-window) h3:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 32px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
+}
+
+:where(.rct-window) h4:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 24px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
+}
+
+:where(.rct-window) h5:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
+}
+
+:where(.rct-window) h6:not(.rct-heading) {
+  margin: 0 0 10px;
+  font-size: 16px;
+  font-weight: normal;
+  line-height: 1;
+  padding-bottom: 4px;
+  border-bottom: 2px solid var(--dark);
+  box-shadow: 0 2px 0 var(--light);
 }
 
 .rct-dropdown {
@@ -411,7 +474,7 @@ textarea.rct-input {
 
 dialog.rct-window {
   border: 0;
-  max-width: min(90vw, 560px);
+  max-width: min(92vw, 720px);
   color: #171310;
 }
 
@@ -419,37 +482,39 @@ dialog.rct-window::backdrop {
   background: rgba(20, 16, 8, 0.55);
 }
 
-@supports not selector(::-webkit-scrollbar) {
-  :where(.rct-window, .rct-scene),
-  :where(.rct-window, .rct-scene) * {
-    scrollbar-color: var(--body) var(--field);
-    scrollbar-width: auto;
-  }
-}
-:where(.rct-window, .rct-scene)::-webkit-scrollbar,
-:where(.rct-window, .rct-scene) *::-webkit-scrollbar {
+.rct-body::-webkit-scrollbar,
+.rct-menu::-webkit-scrollbar,
+.rct-scroll::-webkit-scrollbar {
   width: 16px;
   height: 16px;
 }
-
-:where(.rct-window, .rct-scene)::-webkit-scrollbar-track,
-:where(.rct-window, .rct-scene) *::-webkit-scrollbar-track {
+.rct-body::-webkit-scrollbar-track,
+.rct-menu::-webkit-scrollbar-track,
+.rct-scroll::-webkit-scrollbar-track {
   background: var(--field);
   box-shadow: inset 2px 2px 0 var(--dark), inset -2px -2px 0 var(--light);
 }
-
-:where(.rct-window, .rct-scene)::-webkit-scrollbar-thumb,
-:where(.rct-window, .rct-scene) *::-webkit-scrollbar-thumb {
+.rct-body::-webkit-scrollbar-thumb,
+.rct-menu::-webkit-scrollbar-thumb,
+.rct-scroll::-webkit-scrollbar-thumb {
   background: var(--body);
   box-shadow: inset 2px 2px 0 var(--light), inset -2px -2px 0 var(--dark);
 }
-
-:where(.rct-window, .rct-scene)::-webkit-scrollbar-thumb:active,
-:where(.rct-window, .rct-scene) *::-webkit-scrollbar-thumb:active {
+.rct-body::-webkit-scrollbar-thumb:active,
+.rct-menu::-webkit-scrollbar-thumb:active,
+.rct-scroll::-webkit-scrollbar-thumb:active {
   box-shadow: inset 2px 2px 0 var(--dark), inset -2px -2px 0 var(--light);
 }
-
-:where(.rct-window, .rct-scene)::-webkit-scrollbar-corner,
-:where(.rct-window, .rct-scene) *::-webkit-scrollbar-corner {
+.rct-body::-webkit-scrollbar-corner,
+.rct-menu::-webkit-scrollbar-corner,
+.rct-scroll::-webkit-scrollbar-corner {
   background: var(--field);
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .rct-body,
+  .rct-menu,
+  .rct-scroll {
+    scrollbar-color: var(--body) var(--field);
+  }
 }

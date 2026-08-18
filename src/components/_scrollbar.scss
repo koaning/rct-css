@@ -1,62 +1,50 @@
-// ------------------------------------------------ scrollbar
+// ------------------------------------------------ scrollbars
 //
-// RCT overflow rides a chunky pixel bar instead of the native OS scrollbar. The
-// track is a recessed well (the sunken bevel + `--field` fill of `.rct-input`);
-// the thumb is a raised surface (the bevel + `--body` fill of `.rct-button`), so
-// a scroll region reads as the same chrome as the rest of the frame.
+// Overflow inside RCT chrome gets a themed bar instead of the browser default:
+// a sunken track well with a raised, beveled thumb, drawn with the same 2px
+// light/dark bevel grammar as every other surface and themed through the six
+// CSS custom properties.
 //
-// Scoped to the RCT context (`.rct-window` / `.rct-scene` and their contents),
-// so dropping rct.css into a page never restyles the consumer's own scrollbars.
-//
-// WebKit/Blink gets the full beveled bar via `::-webkit-scrollbar-*`. Firefox
-// (which supports neither those pseudo-elements nor bevels on a scrollbar) gets
-// matching fills through the standard `scrollbar-color`. The two are split by
-// `@supports selector(...)` because Chrome ignores the `::-webkit-scrollbar`
-// pseudos once standard `scrollbar-color` is set — they must not both apply.
+// Scoped to the actual scroll CONTAINERS — a padded `.rct-body`, a `.rct-menu`,
+// or the explicit `.rct-scroll` hook — never the `.rct-window` frame itself, so
+// the bar can't paint over the window's outline + bevel border.
 
 @use "../tokens" as *;
 @use "../mixins" as *;
 
-$scroll: ".rct-window, .rct-scene";
-$bar: $unit * 8;   // 8 font-pixels — a chunky in-game bar.
-
-// Firefox and any engine without ::-webkit-scrollbar: themed fills, no bevel.
-@supports not selector(::-webkit-scrollbar) {
-  :where(#{$scroll}),
-  :where(#{$scroll}) * {
-    scrollbar-color: var(--body) var(--field);   // thumb, track
-    scrollbar-width: auto;
+// WebKit / Blink: the full beveled bar.
+.rct-body,
+.rct-menu,
+.rct-scroll {
+  &::-webkit-scrollbar {
+    width: 8 * $unit;   // 16px — chunky, on the pixel grid
+    height: 8 * $unit;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--field);
+    @include sunken;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--body);
+    @include raised;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    @include sunken;   // press the thumb in when dragged, like a button
+  }
+  // Filler square where a horizontal and vertical bar meet.
+  &::-webkit-scrollbar-corner {
+    background: var(--field);
   }
 }
 
-// WebKit/Blink: the full beveled bar, on the context and everything inside it.
-:where(#{$scroll})::-webkit-scrollbar,
-:where(#{$scroll}) *::-webkit-scrollbar {
-  width: #{$bar};
-  height: #{$bar};
-}
-
-// Track: a recessed well — the sunken bevel + fill of `.rct-input`.
-:where(#{$scroll})::-webkit-scrollbar-track,
-:where(#{$scroll}) *::-webkit-scrollbar-track {
-  background: var(--field);
-  @include sunken;
-}
-
-// Thumb: a raised surface — the bevel + fill of `.rct-button`, pressing in when
-// dragged (bevel inverts, exactly like a button's `:active`).
-:where(#{$scroll})::-webkit-scrollbar-thumb,
-:where(#{$scroll}) *::-webkit-scrollbar-thumb {
-  background: var(--body);
-  @include raised;
-}
-:where(#{$scroll})::-webkit-scrollbar-thumb:active,
-:where(#{$scroll}) *::-webkit-scrollbar-thumb:active {
-  @include sunken;
-}
-
-// The corner where a vertical and horizontal bar meet: fill it with the track.
-:where(#{$scroll})::-webkit-scrollbar-corner,
-:where(#{$scroll}) *::-webkit-scrollbar-corner {
-  background: var(--field);
+// Firefox (which has no ::-webkit-scrollbar): themed fills only. Split behind
+// @supports so Chrome/Blink — which silently drops the ::-webkit-scrollbar
+// pseudos above the moment a standard `scrollbar-color` is set — keeps the full
+// beveled bar, while Firefox still gets thumb/track colors from the theme.
+@supports not selector(::-webkit-scrollbar) {
+  .rct-body,
+  .rct-menu,
+  .rct-scroll {
+    scrollbar-color: var(--body) var(--field);   // thumb, track
+  }
 }
