@@ -7,7 +7,7 @@ anti-aliasing turned off, and CSS-only windows and dropdowns built from `<detail
 The source is Sass. rct.css ships as one plain file, **`dist/rct.css`**. You can
 add it to any page. You can also reskin it fully in plain CSS, with no build step.
 
-![Three RCT-style windows: a tan scenario window, a taupe options window, and a component sheet](docs/index.html)
+![Three RCT-style windows: a tan scenario window, a taupe options window, and a component sheet](docs/preview.png)
 
 > See the live demo: open [`docs/index.html`](docs/index.html) in a browser.
 
