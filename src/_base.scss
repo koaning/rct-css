@@ -15,6 +15,15 @@
   font-display: swap;
 }
 
+// "Departure Mono" by Helena Zhang — SIL OFL 1.1. A pixel monospace used for the
+// framework's inline code and keycaps, so they read as machine text next to the
+// RCT2 prose font. See fonts/DEPARTURE-MONO-LICENSE.txt.
+@font-face {
+  font-family: "Departure Mono";
+  src: url("../fonts/departure-mono.woff2") format("woff2");
+  font-display: swap;
+}
+
 // Border-box everywhere inside a window, at zero specificity so consumers can
 // override without a fight. Stays scoped — never touches the global `*`.
 :where(.rct-window, .rct-scene) * {

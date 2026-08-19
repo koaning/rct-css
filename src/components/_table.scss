@@ -1,0 +1,39 @@
+// ------------------------------------------------ table
+//
+// A data grid in the shape of RCT's list windows (research, finances, guests):
+// a title-coloured header strip over recessed value cells. Element-level and
+// scoped through :where() for zero specificity, like headings and prose.
+//
+// The grid lines are the window's own `--dark` showing through 2px cell gaps
+// (border-spacing = one font-pixel), so the whole table recolours per theme.
+// Font is the 16px step for dense, crisp rows.
+
+@use "../tokens" as *;
+
+:where(.rct-window) table {
+  border-collapse: separate;
+  border-spacing: #{$unit};
+  background: var(--dark);          // shows through the gaps as grid lines
+  margin: 0 0 10px;
+  font-size: 24px;
+  line-height: 1;
+}
+
+:where(.rct-window) :is(th, td) {
+  padding: 8px 14px;
+  text-align: left;
+  font-weight: normal;
+}
+
+// Header strip — the RCT title colour with the hard pixel drop-shadow.
+:where(.rct-window) th {
+  background: var(--title);
+  color: $title-ink;
+  text-shadow: #{$unit} #{$unit} 0 $title-shadow;
+}
+
+// Value cells — recessed field wells.
+:where(.rct-window) td {
+  background: var(--field);
+  color: $ink;
+}

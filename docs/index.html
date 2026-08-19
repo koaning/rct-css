@@ -152,7 +152,7 @@
           </fieldset>
           <fieldset class="rct-group">
             <legend>Body text</legend>
-            <textarea class="rct-input" id="cfg-body">Type in the form to the left and watch this panel react instantly.</textarea>
+            <textarea class="rct-input" id="cfg-body">Type in the form to the left and watch this panel react instantly. You can also observe that we have a nice bespoke scrollbar that's very much in theme here.</textarea>
           </fieldset>
           <fieldset class="rct-group">
             <legend>Options</legend>
@@ -168,7 +168,7 @@
         <div class="rct-body">
           <fieldset class="rct-group">
             <legend>Preview</legend>
-            <p id="preview-body" style="margin: 0; line-height: 0.9">Type in the form to the left and watch this panel react instantly.</p>
+            <p id="preview-body" style="margin: 0; line-height: 0.9">Type in the form to the left and watch this panel react instantly. You can also observe that we have a nice bespoke scrollbar that's very much in theme here.</p>
             <input class="rct-input" type="text" value="An editable field" autocomplete="off">
             <button class="rct-button rct-button--wide" type="button">A Button</button>
             <label class="rct-checkbox"><input type="checkbox" checked> A checkbox</label>
@@ -286,7 +286,7 @@
       </div>
     </details>
 
-    <p class="rct-stage-note">Headings — plain h1–h6, underlined</p>
+    <p class="rct-stage-note">Headings — plain h1–h3, underlined</p>
 
     <details class="rct-window rct-window--taupe" style="width: 100%; max-width: 640px" open>
       <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Headings</summary>
@@ -296,13 +296,51 @@
         <h2>Heading 2</h2>
         <p style="margin: 0 0 14px; line-height: 1.05">A section label inside a panel. Body copy sits underneath at the normal 32px base size, so the hierarchy reads clearly.</p>
         <h3>Heading 3</h3>
-        <p style="margin: 0 0 14px; line-height: 1.05">A sub-section. Use these to break a long window into scannable parts.</p>
-        <h4>Heading 4</h4>
-        <p style="margin: 0 0 14px; line-height: 1.05">A minor grouping — still underlined, just a step smaller.</p>
-        <h5>Heading 5</h5>
-        <p style="margin: 0 0 14px; line-height: 1.05">A fine-grained label for dense forms and lists.</p>
-        <h6>Heading 6</h6>
-        <p style="margin: 0; line-height: 1.05">The smallest step, matching body text size for captions and footnotes.</p>
+        <p style="margin: 0; line-height: 1.05">A sub-section. Three steps is plenty to show the hierarchy — h4–h6 keep shrinking on the same 16px grid.</p>
+      </div>
+    </details>
+
+    <p class="rct-stage-note">Inline text — emphasis, small, keys, marks, code</p>
+
+    <details class="rct-window rct-window--taupe" style="width: 100%; max-width: 640px" open>
+      <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Inline text</summary>
+      <div class="rct-body">
+        <p style="margin: 0 0 14px; line-height: 1.05">The bitmap font has no bold or italic cut, so <strong>strong</strong> and <em>emphasis</em> are told apart by colour, not weight — gold for strong, cream for emphasis, each with a hard pixel drop-shadow.</p>
+        <p style="margin: 0 0 14px; line-height: 1.05">Use <u>underline</u> and <s>strikethrough</s> as chunky 2px rules on the pixel grid, and <mark>mark</mark> to highlight a run of text.</p>
+        <p style="margin: 0 0 14px; line-height: 1.05">Set body copy at the 32px base and drop to <small>small print for captions and footnotes</small> — a gentle step down in the same pixel font.</p>
+        <p style="margin: 0; line-height: 1.05">Press <kbd>Ctrl</kbd> + <kbd>S</kbd> to save. Inline <code>code</code> gets its own raised chip.</p>
+      </div>
+    </details>
+
+    <p class="rct-stage-note">Table — the shape of an RCT list window</p>
+
+    <details class="rct-window rct-window--slate" style="width: 100%; max-width: 640px" open>
+      <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Rides</summary>
+      <div class="rct-body">
+        <table>
+          <thead>
+            <tr><th>Ride</th><th>Type</th><th>Excitement</th><th>Queue</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Wooden Wild Mouse</td><td>Coaster</td><td>6.21</td><td>18</td></tr>
+            <tr><td>Haunted House</td><td>Gentle</td><td>4.07</td><td>9</td></tr>
+            <tr><td>Observation Tower</td><td>Gentle</td><td>3.54</td><td>4</td></tr>
+            <tr><td>Launched Freefall</td><td>Thrill</td><td>7.88</td><td>26</td></tr>
+          </tbody>
+        </table>
+        <p style="margin: 0; line-height: 1.05"><small>Header strip in the title colour; value cells are recessed wells. The grid lines are the window's own dark bevel showing through — so it recolours with the theme (this one is slate).</small></p>
+      </div>
+    </details>
+
+    <p class="rct-stage-note">Figure — a framed viewport with a caption</p>
+
+    <details class="rct-window rct-window--olive" style="width: 100%; max-width: 640px" open>
+      <summary class="rct-titlebar"><span class="rct-close" aria-hidden="true">X</span>Park view</summary>
+      <div class="rct-body">
+        <figure style="max-width: 360px; margin-inline: auto">
+          <img alt="A launched coaster hill over the park, with the sun and a tree" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMjAiIGhlaWdodD0iMTgwIiB2aWV3Qm94PSIwIDAgMzIgMTgiIHNoYXBlLXJlbmRlcmluZz0iY3Jpc3BFZGdlcyI+CjxyZWN0IHdpZHRoPSIzMiIgaGVpZ2h0PSIxOCIgZmlsbD0iIzZkYjNlOCIvPgo8cmVjdCB4PSIyNCIgeT0iMiIgd2lkdGg9IjQiIGhlaWdodD0iNCIgZmlsbD0iI2Y2ZDMxZiIvPgo8cmVjdCB5PSIxMiIgd2lkdGg9IjMyIiBoZWlnaHQ9IjYiIGZpbGw9IiM0YzdhMzAiLz4KPHJlY3QgeT0iMTEiIHdpZHRoPSIzMiIgaGVpZ2h0PSIxIiBmaWxsPSIjNWM5MDM4Ii8+CjxyZWN0IHg9IjQiIHk9IjkiIHdpZHRoPSIxIiBoZWlnaHQ9IjMiIGZpbGw9IiM2ZTRlMTAiLz4KPHJlY3QgeD0iOSIgeT0iOSIgd2lkdGg9IjEiIGhlaWdodD0iMyIgZmlsbD0iIzZlNGUxMCIvPgo8cmVjdCB4PSIxNCIgeT0iOSIgd2lkdGg9IjEiIGhlaWdodD0iMyIgZmlsbD0iIzZlNGUxMCIvPgo8cmVjdCB4PSIxOSIgeT0iOSIgd2lkdGg9IjEiIGhlaWdodD0iMyIgZmlsbD0iIzZlNGUxMCIvPgo8cmVjdCB4PSIyNCIgeT0iOSIgd2lkdGg9IjEiIGhlaWdodD0iMyIgZmlsbD0iIzZlNGUxMCIvPgo8cmVjdCB4PSIzIiB5PSI4IiB3aWR0aD0iMyIgaGVpZ2h0PSIxIiBmaWxsPSIjYjgzNDJiIi8+CjxyZWN0IHg9IjYiIHk9IjYiIHdpZHRoPSIzIiBoZWlnaHQ9IjEiIGZpbGw9IiNiODM0MmIiLz4KPHJlY3QgeD0iOSIgeT0iNSIgd2lkdGg9IjMiIGhlaWdodD0iMSIgZmlsbD0iI2I4MzQyYiIvPgo8cmVjdCB4PSIxMiIgeT0iNiIgd2lkdGg9IjMiIGhlaWdodD0iMSIgZmlsbD0iI2I4MzQyYiIvPgo8cmVjdCB4PSIxNSIgeT0iOCIgd2lkdGg9IjMiIGhlaWdodD0iMSIgZmlsbD0iI2I4MzQyYiIvPgo8cmVjdCB4PSIxOCIgeT0iNyIgd2lkdGg9IjMiIGhlaWdodD0iMSIgZmlsbD0iI2I4MzQyYiIvPgo8cmVjdCB4PSIyMSIgeT0iOCIgd2lkdGg9IjQiIGhlaWdodD0iMSIgZmlsbD0iI2I4MzQyYiIvPgo8cmVjdCB4PSIyNyIgeT0iMTAiIHdpZHRoPSIyIiBoZWlnaHQ9IjIiIGZpbGw9IiMyZjdkMzIiLz4KPHJlY3QgeD0iMjciIHk9IjEyIiB3aWR0aD0iMiIgaGVpZ2h0PSIxIiBmaWxsPSIjNmU0ZTEwIi8+Cjwvc3ZnPgo=">
+          <figcaption>The Wooden Wild Mouse at dusk — Viewpoint 3</figcaption>
+        </figure>
       </div>
     </details>
 
@@ -361,6 +399,8 @@
         (<a href="https://fontstruct.com/fontstructions/show/465125">fontstruct.com/fontstructions/show/465125</a>)
         by “Qimplef” is licensed under a Creative Commons Attribution Share Alike
         license (<a href="http://creativecommons.org/licenses/by-sa/3.0/">CC&nbsp;BY-SA&nbsp;3.0</a>).
+        “Departure Mono” (<a href="https://departuremono.com/">departuremono.com</a>)
+        by Helena Zhang is licensed under the SIL Open Font License 1.1.
         The rct.css stylesheets and JavaScript are MIT licensed.
       </p>
     </section>

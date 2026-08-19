@@ -1,0 +1,80 @@
+// ------------------------------------------------ inline text
+//
+// Semantic inline elements for prose inside a window. Like headings, these are
+// element-level and scoped through :where() so they carry ZERO specificity — any
+// explicit class always wins, and a consumer can override with one plain selector.
+//
+// The RCT2 font is a single bitmap face: crisp only at multiples of 16px, and it
+// has no bold or italic cut. So emphasis is done the RCT way — colour + a hard
+// pixel drop-shadow — not synthetic weight/slant (which would smear the glyphs
+// off the pixel grid). Sizes snap to 16px (half the 32px base) to stay crisp.
+
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+// Emphasis: colour + a 2px pixel drop-shadow, the same accent grammar the gold
+// panel heading uses. No font-weight/font-style — the bitmap font has neither, so
+// strong vs em are told apart by hue: gold for strong, cream for em.
+:where(.rct-window) :is(strong, b, em, i) {
+  font-weight: normal;
+  font-style: normal;
+}
+:where(.rct-window) :is(strong, b) {
+  color: #f6d31f;                              // gold accent
+  text-shadow: #{$unit} #{$unit} 0 #4e3a00;   // hard pixel drop
+}
+:where(.rct-window) :is(em, i) {
+  color: $title-ink;                           // cream accent
+  text-shadow: #{$unit} #{$unit} 0 $title-shadow;
+}
+
+// Small print — captions and footnotes. A gentle step down in the SAME RCT2 font
+// (24px, the h4 step) so it stays cohesive; 16px crushes the bitmap glyphs.
+:where(.rct-window) small { font-size: 24px; }
+
+// Underline / strike — chunky 2px decorations that land on the pixel grid rather
+// than the browser's thin sub-pixel default.
+:where(.rct-window) u {
+  text-decoration: underline;
+  text-decoration-thickness: #{$unit};
+  text-underline-offset: #{$unit};
+}
+:where(.rct-window) :is(s, del) {
+  text-decoration: line-through;
+  text-decoration-thickness: #{$unit};
+}
+
+// Highlight — a plain highlighter run: gold fill behind dark ink, no bevel.
+:where(.rct-window) mark {
+  background: #f6d31f;
+  color: $ink;
+  padding: 0 4px 2px;
+}
+
+// Inline keycap — a raised bevel key set in the pixel mono font, so a shortcut
+// reads as machine text rather than prose. Sized up from the small step and
+// middle-aligned so the cap sits centred against the surrounding RCT2 line.
+:where(.rct-window) kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  font-family: "Departure Mono", ui-monospace, "Courier New", monospace;
+  font-size: 20px;
+  line-height: 1;
+  vertical-align: middle;
+  color: $ink;
+  background: var(--body);
+  @include raised;
+}
+
+// Inline code — a small raised chip (an un-pressed button surface) set in the
+// pixel mono font, so code stands apart from the RCT2 prose face without looking
+// recessed. No consumer-side override needed.
+:where(.rct-window) :not(pre) > code {
+  padding: 1px 6px;
+  font-family: "Departure Mono", ui-monospace, "Courier New", monospace;
+  font-size: 20px;
+  vertical-align: middle;
+  background: var(--body);
+  color: $ink;
+  @include raised;
+}

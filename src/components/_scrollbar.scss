@@ -6,8 +6,9 @@
 // CSS custom properties.
 //
 // Scoped to the actual scroll CONTAINERS — a padded `.rct-body`, a `.rct-menu`,
-// or the explicit `.rct-scroll` hook — never the `.rct-window` frame itself, so
-// the bar can't paint over the window's outline + bevel border.
+// a scrolling `.rct-input` (a <textarea> is its own scroll box), or the explicit
+// `.rct-scroll` hook — never the `.rct-window` frame itself, so the bar can't
+// paint over the window's outline + bevel border.
 
 @use "../tokens" as *;
 @use "../mixins" as *;
@@ -15,6 +16,7 @@
 // WebKit / Blink: the full beveled bar.
 .rct-body,
 .rct-menu,
+.rct-input,
 .rct-scroll {
   &::-webkit-scrollbar {
     width: 8 * $unit;   // 16px — chunky, on the pixel grid
@@ -44,6 +46,7 @@
 @supports not selector(::-webkit-scrollbar) {
   .rct-body,
   .rct-menu,
+  .rct-input,
   .rct-scroll {
     scrollbar-color: var(--body) var(--field);   // thumb, track
   }
