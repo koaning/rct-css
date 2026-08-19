@@ -1,0 +1,32 @@
+// ------------------------------------------------ figure
+//
+// A framed image with a caption underneath, shaped like RCT's recessed viewport
+// (the little park-view window): the picture sits in a sunken field well, the
+// caption is the small 16px prose step. Element-level, scoped via :where() for
+// zero specificity like headings and prose.
+
+@use "../tokens" as *;
+@use "../mixins" as *;
+
+:where(.rct-window) figure {
+  margin: 0 0 10px;
+}
+
+// Recessed viewport frame around the image.
+:where(.rct-window) figure > img {
+  display: block;
+  width: 100%;
+  padding: 4px;
+  background: var(--field);
+  image-rendering: pixelated;      // keep pixel art crisp
+  @include sunken;
+}
+
+// Caption — small print centred under the frame: the same gentle 24px step as
+// <small>, in the RCT2 font so it stays cohesive with the rest of the panel.
+:where(.rct-window) figcaption {
+  margin-top: 6px;
+  font-size: 24px;
+  text-align: center;
+  color: $ink;
+}

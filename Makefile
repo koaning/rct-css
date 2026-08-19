@@ -10,7 +10,7 @@ docs:  ## Compile CSS and copy CSS + assets into docs/ (the GitHub Pages root)
 	$(SASS) src/rct.scss dist/rct.min.css --style=compressed
 	mkdir -p docs/dist docs/fonts docs/js
 	cp dist/rct.css dist/rct.min.css docs/dist/
-	cp fonts/departure-mono.woff2 fonts/DEPARTURE-MONO-LICENSE.txt docs/fonts/
+	cp fonts/rct2.otf fonts/departure-mono.woff2 fonts/DEPARTURE-MONO-LICENSE.txt docs/fonts/
 	cp js/rct.js docs/js/
 
 watch:  ## Rebuild on change
