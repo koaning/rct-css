@@ -1,0 +1,6 @@
+# Treat font/binary assets as binary so they are never line-ending- or
+# text-filtered (which previously corrupted rct2.otf into U+FFFD bytes).
+*.otf binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
