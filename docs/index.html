@@ -95,6 +95,15 @@
   }
   .rct-usage a { color: #ffe680; }
 
+  .rct-stage-note a {
+    color: #ffe680;
+    text-underline-offset: 3px;
+  }
+  .rct-stage-note a:focus-visible {
+    outline: 2px solid #ffe680;
+    outline-offset: 4px;
+  }
+
   /* Footer credit: readable body text, not the tiny pixel-font line it was. */
   .rct-credit {
     font-family: "Departure Mono", ui-monospace, Menlo, monospace;
@@ -125,7 +134,10 @@
 </head>
 <body class="rct-scene">
   <div class="rct-stage">
-    <p class="rct-stage-note">rct.css — RollerCoaster Tycoon panel chrome, as a framework</p>
+    <p class="rct-stage-note">
+      rct.css — RollerCoaster Tycoon panel chrome, as a framework ·
+      <a href="https://github.com/koaning/rct-css">View on GitHub</a>
+    </p>
 
     <!-- ============ interactive designer: form drives the preview ============ -->
     <div class="rct-demo">
